@@ -19,13 +19,13 @@ jobs:
         include:
           - os: ubuntu-latest
             ext: so
-            asset: opencad.example-linux-x86_64.so
+            asset: myFirstPlugin-linux-x86_64.so
           - os: windows-latest
             ext: dll
-            asset: opencad.example-windows-x86_64.dll
+            asset: myFirstPlugin-windows-x86_64.dll
           - os: macos-latest
             ext: dylib
-            asset: opencad.example-macos-aarch64.dylib
+            asset: myFirstPlugin-macos-aarch64.dylib
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
