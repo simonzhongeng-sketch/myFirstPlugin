@@ -16,15 +16,21 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: ilammy/msvc-dev-cmd@v1
       - uses: dtolnay/rust-toolchain@stable
+      - name: Configure Windows MSVC toolchain
+        shell: powershell
+        run: |
+          rustup default stable-x86_64-pc-windows-msvc
+          rustup target add x86_64-pc-windows-msvc
       - name: Build Windows plugin
         shell: powershell
-        run: cargo build --release
+        run: cargo build --release --target x86_64-pc-windows-msvc
       - name: Stage release asset
         shell: bash
         run: |
           mkdir -p dist
-          cp target/release/*.dll dist/myFirstPlugin-windows-x86_64.dll
+          cp target/x86_64-pc-windows-msvc/release/*.dll dist/myFirstPlugin-windows-x86_64.dll
           cp plugin.toml dist/plugin.toml
       - uses: softprops/action-gh-release@v2
         with:
