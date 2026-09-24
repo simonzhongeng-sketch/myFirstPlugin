@@ -1,0 +1,13 @@
+[plugin]
+id = "myFirstPlugin"
+name = "myFirstPlugin"
+version = "0.3.0"
+description = "First custom OpenCAD plugin"
+author = "Open CAD Studio contributors"
+license = "GPL-3.0-only"
+
+[opencad]
+api_version = 3
+ribbon_order = 50
+command_prefixes = ["MF_"]
+xdata_apps = []
