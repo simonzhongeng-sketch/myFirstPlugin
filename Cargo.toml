@@ -1,6 +1,6 @@
 [package]
 name = "myFirstPlugin"
-version = "0.3.0"
+version = "0.3.2"
 edition = "2021"
 description = "Custom external add-on for Open CAD Studio — distributed as a prebuilt cdylib via GitHub Releases."
 license = "GPL-3.0-only"

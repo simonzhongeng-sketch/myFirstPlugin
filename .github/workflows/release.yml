@@ -13,34 +13,21 @@ permissions:
 
 jobs:
   build:
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: ubuntu-latest
-            ext: so
-            asset: myFirstPlugin-linux-x86_64.so
-          - os: windows-latest
-            ext: dll
-            asset: myFirstPlugin-windows-x86_64.dll
-          - os: macos-latest
-            ext: dylib
-            asset: myFirstPlugin-macos-aarch64.dylib
-    runs-on: ${{ matrix.os }}
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
-      - run: cargo build --release
+      - name: Build Windows plugin
+        shell: powershell
+        run: cargo build --release
       - name: Stage release asset
         shell: bash
         run: |
           mkdir -p dist
-          # The cdylib name varies by platform (lib*.so / *.dll / lib*.dylib);
-          # the host loader accepts any name with the right extension.
-          cp target/release/*.${{ matrix.ext }} "dist/${{ matrix.asset }}"
+          cp target/release/*.dll dist/myFirstPlugin-windows-x86_64.dll
           cp plugin.toml dist/plugin.toml
       - uses: softprops/action-gh-release@v2
         with:
           files: |
-            dist/${{ matrix.asset }}
+            dist/myFirstPlugin-windows-x86_64.dll
             dist/plugin.toml

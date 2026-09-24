@@ -1,7 +1,7 @@
 [plugin]
 id = "myFirstPlugin"
 name = "myFirstPlugin"
-version = "0.3.0"
+version = "0.3.2"
 description = "First custom OpenCAD plugin"
 author = "Open CAD Studio contributors"
 license = "GPL-3.0-only"
